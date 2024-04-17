@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<a href="{% url 'movies:movie_list' %}">Movies list</a><br />
+<a href="{% url 'movies:movie_update' object.id %}">Update Movie</a><br />
+<a href="{% url 'movies:movie_delete' object.id %}">Delete Movie</a><br />
+<h1>{{ object.name }}</h1>
+Actors:<br />
+{% for actor in object.actors.all %}
+{{actor.name}}<br />
+<br />
+Running time: {{object.running_time|time:"H:i:s"}}<br />
+Director: {{object.director}}<br />
+Release date: {{object.release_date|date:"m d Y"}}<br />
+{% endfor %}
+{% endblock content %}

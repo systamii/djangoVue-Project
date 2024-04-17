@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load django_vite %}
+{% block content %}
+<div id="app">
+<app></app>
+</div>
+{% endblock content %}
+{% block js %}
+{{ block.super }}
+<script>
+var ext_movie_id = {{ movie_id }}
+var ext_movie_detail_js_url = '{% url 'movies:movie_detail_js' movie_id %}'
+</script>
+{% vite_asset 'src/apps/movie_show/movie_show.js' %}
+{% endblock js %}

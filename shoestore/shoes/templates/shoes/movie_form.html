@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load django_vite %}
+{% block content %}
+<br><br>
+<div id="app">
+    <app></app>
+</div>
+{% endblock content %}
+{% block js %}
+{{ block.super }}
+<script>
+    var ext_csrf_token = '{{ csrf_token }}'
+    var ext_form = `{{ form.as_p | safe}}`
+    var ext_movie_dict = {{ movie_dict | safe }}
+    var ext_actor_list = {{ actor_list | safe }}
+</script>
+{% vite_hmr_client %}
+{% vite_asset 'src/apps/movie_edit/movie_edit.js' %}
+{% endblock js %}
